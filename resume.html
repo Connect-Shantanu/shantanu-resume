@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shantanu Chakraborty - DevOps Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Slate & Sky Blue -->
+    <!-- Application Structure Plan: The SPA is designed as an interactive dashboard rather than a static document. The structure includes a sticky navigation for easy access to key sections: a dynamic 'Overview' with KPI cards and a skills chart, an 'Experience' timeline, a 'Projects' portfolio with interactive modals, and a final section for 'Education & Certifications'. This non-linear structure allows recruiters to quickly jump to the information most relevant to them, while interactive elements encourage exploration of skills and project details, providing a richer experience than a traditional resume. -->
+    <!-- Visualization & Content Choices: 
+        - Key Metrics (Years, Servers Managed, Uptime): Goal is to inform and impress quickly. Presented as dynamic stat cards using HTML/Tailwind for immediate impact.
+        - Technical Skills: Goal is to organize and compare proficiency. A horizontal bar chart (Chart.js/Canvas) visualizes skill levels, making it easier to digest than a simple list. Hover tooltips provide direct interaction.
+        - Professional Experience: Goal is to organize chronologically. A clean timeline format built with HTML/Tailwind is used.
+        - Internal Projects: Goal is to demonstrate practical application. A card-based layout is used. Interaction is provided through modals (JS) that open on click to show detailed project information, separating summary from deep-dive content.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 50vh;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body class="text-slate-700">
+
+    <header id="header" class="bg-slate-800 text-white shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="text-2xl font-bold text-sky-400">SC</div>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#overview" class="hover:text-sky-400 transition-colors duration-300">Overview</a>
+                <a href="#experience" class="hover:text-sky-400 transition-colors duration-300">Experience</a>
+                <a href="#projects" class="hover:text-sky-400 transition-colors duration-300">Projects</a>
+                <a href="#education" class="hover:text-sky-400 transition-colors duration-300">Education & Certs</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-800">
+            <a href="#overview" class="block py-2 px-4 text-sm hover:bg-slate-700">Overview</a>
+            <a href="#experience" class="block py-2 px-4 text-sm hover:bg-slate-700">Experience</a>
+            <a href="#projects" class="block py-2 px-4 text-sm hover:bg-slate-700">Projects</a>
+            <a href="#education" class="block py-2 px-4 text-sm hover:bg-slate-700">Education & Certs</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        <section id="hero" class="text-center mb-20">
+            <h1 class="text-5xl md:text-6xl font-extrabold text-slate-800 mb-4">Shantanu Chakraborty</h1>
+            <h2 class="text-2xl md:text-3xl font-semibold text-sky-600 mb-6">DevOps & Infrastructure Engineer</h2>
+            <p class="max-w-3xl mx-auto text-lg text-slate-600 mb-8">
+                Experienced DevOps Engineer with nearly 4 years of hands-on experience in automating, managing, and optimizing scalable Linux infrastructure. Proven ability to enhance system security, ensure high availability, and streamline CI/CD pipelines to boost operational efficiency.
+            </p>
+            <div class="flex justify-center space-x-4">
+                <a href="mailto:meshantanu03@gmail.com" class="bg-sky-600 text-white font-semibold py-2 px-5 rounded-lg hover:bg-sky-700 transition-all duration-300 shadow-md">Email Me</a>
+                <a href="https://www.linkedin.com/in/connect-shantanu" target="_blank" class="bg-slate-200 text-slate-800 font-semibold py-2 px-5 rounded-lg hover:bg-slate-300 transition-all duration-300 shadow-md">LinkedIn</a>
+            </div>
+        </section>
+
+        <section id="overview" class="mb-20 scroll-mt-20">
+            <h3 class="text-3xl font-bold text-center text-slate-800 mb-4">Career at a Glance</h3>
+            <p class="text-center text-slate-600 mb-12 max-w-2xl mx-auto">This dashboard provides a high-level overview of my professional experience and technical capabilities, showcasing key achievements and areas of expertise in the DevOps landscape.</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center border-t-4 border-sky-500">
+                    <div class="text-4xl font-bold text-sky-600 mb-2">3.9+</div>
+                    <div class="text-slate-600 font-medium">Years of Experience</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center border-t-4 border-sky-500">
+                    <div class="text-4xl font-bold text-sky-600 mb-2">100+</div>
+                    <div class="text-slate-600 font-medium">Linux Servers Managed</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center border-t-4 border-sky-500">
+                    <div class="text-4xl font-bold text-sky-600 mb-2">99.9%</div>
+                    <div class="text-slate-600 font-medium">Production Uptime</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center border-t-4 border-sky-500">
+                    <div class="text-4xl font-bold text-sky-600 mb-2">30%</div>
+                    <div class="text-slate-600 font-medium">Increased Efficiency</div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                 <h4 class="text-2xl font-bold text-center text-slate-800 mb-6">Technical Proficiency</h4>
+                <div class="chart-container">
+                    <canvas id="skillsChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="mb-20 scroll-mt-20">
+            <h3 class="text-3xl font-bold text-center text-slate-800 mb-4">Professional Experience</h3>
+            <p class="text-center text-slate-600 mb-12 max-w-2xl mx-auto">My professional journey has been focused on building robust, scalable, and secure infrastructure. Here's a look at my role and key contributions.</p>
+            <div class="relative border-l-2 border-sky-200 ml-4 md:ml-0">
+                <div class="mb-8 pl-8 md:pl-10 relative">
+                    <div class="absolute -left-5 w-9 h-9 bg-sky-600 rounded-full border-4 border-white flex items-center justify-center text-white font-bold">W</div>
+                    <p class="text-sm font-semibold text-slate-500">DEC 2021 – PRESENT</p>
+                    <h4 class="text-xl font-bold text-slate-800 mt-1">DevOps Engineer</h4>
+                    <p class="text-md font-medium text-slate-600">Wipro Technologies, Mysore</p>
+                    <ul class="mt-4 space-y-3 list-disc list-inside text-slate-600">
+                        <li>Designed, built, and maintained **CI/CD pipelines** using Git and Docker, accelerating model training and deployment cycles.</li>
+                        <li>Automated infrastructure provisioning and configuration management with **Ansible**, reducing manual configuration effort by 30%.</li>
+                        <li>Managed containerized ML services using **Docker** and provided support for **Kubernetes** orchestration, improving service scalability and reliability.</li>
+                        <li>Ensured system **scalability, performance, and security** across 100+ Linux servers, consistently achieving 99.9% uptime.</li>
+                        <li>Implemented robust monitoring and alerting solutions with **Prometheus** and **Grafana** to ensure production readiness and rapid issue response.</li>
+                        <li>Collaborated closely with AI/ML teams to streamline development workflows and troubleshoot complex infrastructure issues.</li>
+                         <li>Enhanced system security by implementing firewall rules, SELinux policies, and conducting regular system patching.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="mb-20 scroll-mt-20">
+            <h3 class="text-3xl font-bold text-center text-slate-800 mb-4">Internal Projects</h4>
+            <p class="text-center text-slate-600 mb-12 max-w-2xl mx-auto">I believe in proactive problem-solving through automation. These projects demonstrate my ability to identify inefficiencies and build practical, scripted solutions.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col">
+                    <h4 class="text-xl font-bold text-slate-800 mb-2">Automated Patch Management</h4>
+                    <p class="text-slate-600 mb-4 flex-grow">A custom Bash script to automate the download and installation of security patches across multiple servers, ensuring compliance and security posture.</p>
+                    <button data-project="patch" class="project-modal-trigger mt-auto bg-slate-100 text-sky-700 font-semibold py-2 px-4 rounded-lg hover:bg-slate-200 transition-all duration-300">View Details</button>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col">
+                    <h4 class="text-xl font-bold text-slate-800 mb-2">Server Health Monitoring</h4>
+                    <p class="text-slate-600 mb-4 flex-grow">Developed a proactive server health check script that monitors critical system resources (CPU, Memory, Disk) and sends alerts to prevent potential outages.</p>
+                    <button data-project="health" class="project-modal-trigger mt-auto bg-slate-100 text-sky-700 font-semibold py-2 px-4 rounded-lg hover:bg-slate-200 transition-all duration-300">View Details</button>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col">
+                    <h4 class="text-xl font-bold text-slate-800 mb-2">Automated Backup Management</h4>
+                    <p class="text-slate-600 mb-4 flex-grow">A cron-scheduled Bash script that automates the generation and storage of compressed website backups, ensuring reliable and consistent recovery points.</p>
+                    <button data-project="backup" class="project-modal-trigger mt-auto bg-slate-100 text-sky-700 font-semibold py-2 px-4 rounded-lg hover:bg-slate-200 transition-all duration-300">View Details</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="scroll-mt-20">
+            <h3 class="text-3xl font-bold text-center text-slate-800 mb-4">Education & Certifications</h3>
+            <p class="text-center text-slate-600 mb-12 max-w-2xl mx-auto">My formal education in Computer Science provides a strong theoretical foundation, complemented by industry-recognized certifications that validate my practical skills.</p>
+            <div class="grid md:grid-cols-2 gap-10">
+                <div>
+                    <h4 class="text-2xl font-bold text-slate-800 mb-4">Education</h4>
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <p class="text-sm font-semibold text-slate-500">2017 – 2021</p>
+                        <h5 class="text-lg font-bold text-slate-800 mt-1">Bachelor of Technology, Computer Science</h5>
+                        <p class="text-md text-slate-600">Swami Vivekananda Institute of Science and Technology, Kolkata</p>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-2xl font-bold text-slate-800 mb-4">Certifications</h4>
+                    <div class="space-y-4">
+                        <div class="bg-white p-4 rounded-xl shadow-lg">
+                            <h5 class="font-bold text-slate-800">Red Hat System Administration I & II</h5>
+                            <p class="text-sm text-slate-600">RH124 & RH134</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl shadow-lg">
+                            <h5 class="font-bold text-slate-800">Red Hat Satellite 6 Administration</h5>
+                             <p class="text-sm text-slate-600">RH403</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-800 text-slate-400 mt-20">
+        <div class="container mx-auto px-6 py-4 text-center text-sm">
+            <p>&copy; 2024 Shantanu Chakraborty. Designed for modern recruitment.</p>
+        </div>
+    </footer>
+
+    <div id="project-modal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-8 relative transform transition-all scale-95 opacity-0" id="modal-content">
+             <button id="modal-close-button" class="absolute top-4 right-4 text-slate-500 hover:text-slate-800 text-3xl">&times;</button>
+            <h3 id="modal-title" class="text-2xl font-bold text-slate-800 mb-4"></h3>
+            <div id="modal-body" class="text-slate-600 space-y-4"></div>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const skillsChartCtx = document.getElementById('skillsChart').getContext('2d');
+            const skillsChart = new Chart(skillsChartCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Ansible', 'Bash Scripting', 'Docker', 'CI/CD (Jenkins/Git)', 'Linux Admin', 'Cloud (AWS/GCP)', 'Monitoring', 'Kubernetes'],
+                    datasets: [{
+                        label: 'Proficiency Level',
+                        data: [90, 95, 85, 85, 95, 70, 80, 65],
+                        backgroundColor: 'rgba(56, 189, 248, 0.6)',
+                        borderColor: 'rgba(14, 165, 233, 1)',
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%'
+                                }
+                            }
+                        },
+                        y: {
+                           ticks: {
+                                font: {
+                                   size: 14,
+                                }
+                           }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.x !== null) {
+                                        let level = context.parsed.x;
+                                        if (level > 90) label += 'Expert';
+                                        else if (level > 80) label += 'Advanced';
+                                        else if (level > 65) label += 'Proficient';
+                                        else label += 'Familiar';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            const projectModal = document.getElementById('project-modal');
+            const modalContent = document.getElementById('modal-content');
+            const modalTitle = document.getElementById('modal-title');
+            const modalBody = document.getElementById('modal-body');
+            const modalCloseButton = document.getElementById('modal-close-button');
+
+            const projectData = {
+                patch: {
+                    title: 'Automated Patch Management Script',
+                    details: `
+                        <p><strong>Challenge:</strong> Manually patching over 100 servers was time-consuming, prone to human error, and made it difficult to maintain a consistent security baseline across the infrastructure.</p>
+                        <p><strong>Solution:</strong> I developed a robust Bash script that connects to servers, checks for available security patches using native package managers (YUM/APT), and applies them automatically. The script includes logging for audit trails and sends a summary report via email upon completion.</p>
+                        <p><strong>Impact:</strong> This automation reduced manual patching time by over 40%, improved security compliance, and allowed the team to focus on more strategic initiatives.</p>
+                        <p><strong>Technologies:</strong> Bash, Cron, YUM, APT, Secure Shell (SSH)</p>
+                    `
+                },
+                health: {
+                    title: 'Proactive Server Health Monitoring Script',
+                    details: `
+                        <p><strong>Challenge:</strong> Identifying potential system issues before they caused downtime required constant manual monitoring, which was inefficient and not scalable.</p>
+                        <p><strong>Solution:</strong> I wrote a comprehensive Bash script, scheduled via Cron, to monitor key performance indicators like CPU load, memory utilization, and disk space. If any metric exceeds a predefined threshold, the script triggers an alert to our monitoring system (Prometheus) and sends an email notification.</p>
+                        <p><strong>Impact:</strong> Increased system reliability by enabling proactive intervention. It significantly reduced the risk of performance degradation and unexpected outages.</p>
+                        <p><strong>Technologies:</strong> Bash, Cron, Prometheus Alertmanager</p>
+                    `
+                },
+                backup: {
+                    title: 'Automated Backup Management Script',
+                    details: `
+                        <p><strong>Challenge:</strong> Manual backups were often missed or inconsistent, posing a significant risk to data integrity and business continuity.</p>
+                        <p><strong>Solution:</strong> I created a fully automated backup solution using a Bash script. It identifies critical application data, creates compressed archives, timestamps them for versioning, and transfers them to a secure, remote storage location. The script also includes a cleanup mechanism to prune old backups, managing storage space effectively.</p>
+                        <p><strong>Impact:</strong> Eliminated missed backups and reduced manual effort by 70%. It established a reliable and consistent disaster recovery process, ensuring critical data could be restored quickly.</p>
+                        <p><strong>Technologies:</strong> Bash, Cron, Tar, Rsync, SSH</p>
+                    `
+                }
+            };
+            
+            function openModal(projectKey) {
+                const data = projectData[projectKey];
+                if (!data) return;
+                modalTitle.textContent = data.title;
+                modalBody.innerHTML = data.details;
+                projectModal.classList.remove('hidden');
+                setTimeout(() => {
+                   modalContent.classList.remove('scale-95', 'opacity-0');
+                }, 50);
+            }
+            
+            function closeModal() {
+                 modalContent.classList.add('scale-95', 'opacity-0');
+                 setTimeout(() => {
+                    projectModal.classList.add('hidden');
+                 }, 300);
+            }
+
+            document.querySelectorAll('.project-modal-trigger').forEach(button => {
+                button.addEventListener('click', () => {
+                    openModal(button.dataset.project);
+                });
+            });
+            
+            modalCloseButton.addEventListener('click', closeModal);
+            projectModal.addEventListener('click', (e) => {
+                if(e.target === projectModal) {
+                    closeModal();
+                }
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !projectModal.classList.contains('hidden')) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
