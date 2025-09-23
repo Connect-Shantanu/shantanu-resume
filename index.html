@@ -9,14 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Slate & Sky Blue -->
-    <!-- Application Structure Plan: The SPA is designed as an interactive dashboard rather than a static document. The structure includes a sticky navigation for easy access to key sections: a dynamic 'Overview' with KPI cards and a skills chart, an 'Experience' timeline, a 'Projects' portfolio with interactive modals, and a final section for 'Education & Certifications'. This non-linear structure allows recruiters to quickly jump to the information most relevant to them, while interactive elements encourage exploration of skills and project details, providing a richer experience than a traditional resume. -->
-    <!-- Visualization & Content Choices: 
-        - Key Metrics (Years, Servers Managed, Uptime): Goal is to inform and impress quickly. Presented as dynamic stat cards using HTML/Tailwind for immediate impact.
-        - Technical Skills: Goal is to organize and compare proficiency. A horizontal bar chart (Chart.js/Canvas) visualizes skill levels, making it easier to digest than a simple list. Hover tooltips provide direct interaction.
-        - Professional Experience: Goal is to organize chronologically. A clean timeline format built with HTML/Tailwind is used.
-        - Internal Projects: Goal is to demonstrate practical application. A card-based layout is used. Interaction is provided through modals (JS) that open on click to show detailed project information, separating summary from deep-dive content.
-        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-ie3v5pU4WpX6OqW9+jS0o6N8s5l6w6q5+B7VjM4Q5kY6FvD7kP8B7Vz4y1n2A4c8u4bB4j4j4y4a4d4e3f8E7C0+w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -36,6 +29,23 @@
                 height: 300px;
             }
         }
+        .modal-open {
+            overflow: hidden;
+        }
+        .modal-content-transition {
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+        }
+        .modal-content-transition.scale-95 {
+            transform: scale(0.95);
+            opacity: 0;
+        }
+        .contact-form-message {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .contact-form-message.show {
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="text-slate-700">
@@ -48,6 +58,7 @@
                 <a href="#experience" class="hover:text-sky-400 transition-colors duration-300">Experience</a>
                 <a href="#projects" class="hover:text-sky-400 transition-colors duration-300">Projects</a>
                 <a href="#education" class="hover:text-sky-400 transition-colors duration-300">Education & Certs</a>
+                <a href="#contact" class="hover:text-sky-400 transition-colors duration-300">Contact</a>
             </div>
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-white focus:outline-none">
@@ -60,6 +71,7 @@
             <a href="#experience" class="block py-2 px-4 text-sm hover:bg-slate-700">Experience</a>
             <a href="#projects" class="block py-2 px-4 text-sm hover:bg-slate-700">Projects</a>
             <a href="#education" class="block py-2 px-4 text-sm hover:bg-slate-700">Education & Certs</a>
+            <a href="#contact" class="block py-2 px-4 text-sm hover:bg-slate-700">Contact</a>
         </div>
     </header>
 
@@ -71,8 +83,9 @@
                 Experienced DevOps Engineer with nearly 4 years of hands-on experience in automating, managing, and optimizing scalable Linux infrastructure. Proven ability to enhance system security, ensure high availability, and streamline CI/CD pipelines to boost operational efficiency.
             </p>
             <div class="flex justify-center space-x-4">
-                <a href="mailto:meshantanu03@gmail.com" class="bg-sky-600 text-white font-semibold py-2 px-5 rounded-lg hover:bg-sky-700 transition-all duration-300 shadow-md">Email Me</a>
-                <a href="https://www.linkedin.com/in/connect-shantanu" target="_blank" class="bg-slate-200 text-slate-800 font-semibold py-2 px-5 rounded-lg hover:bg-slate-300 transition-all duration-300 shadow-md">LinkedIn</a>
+                <a href="mailto:meshantanu03@gmail.com" class="bg-sky-600 text-white font-semibold py-2 px-5 rounded-lg hover:bg-sky-700 transition-all duration-300 shadow-md flex items-center"><i class="fas fa-envelope mr-2"></i>Email Me</a>
+                <a href="https://www.linkedin.com/in/connect-shantanu" target="_blank" class="bg-slate-200 text-slate-800 font-semibold py-2 px-5 rounded-lg hover:bg-slate-300 transition-all duration-300 shadow-md flex items-center"><i class="fab fa-linkedin-in mr-2"></i>LinkedIn</a>
+                <a href="https://github.com/Connect-Shantanu" target="_blank" class="bg-slate-200 text-slate-800 font-semibold py-2 px-5 rounded-lg hover:bg-slate-300 transition-all duration-300 shadow-md flex items-center"><i class="fab fa-github mr-2"></i>GitHub</a>
             </div>
         </section>
 
@@ -100,7 +113,7 @@
             </div>
 
             <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
-                 <h4 class="text-2xl font-bold text-center text-slate-800 mb-6">Technical Proficiency</h4>
+                <h4 class="text-2xl font-bold text-center text-slate-800 mb-6">Technical Proficiency</h4>
                 <div class="chart-container">
                     <canvas id="skillsChart"></canvas>
                 </div>
@@ -117,20 +130,20 @@
                     <h4 class="text-xl font-bold text-slate-800 mt-1">DevOps Engineer</h4>
                     <p class="text-md font-medium text-slate-600">Wipro Technologies, Mysore</p>
                     <ul class="mt-4 space-y-3 list-disc list-inside text-slate-600">
-			    <li>Designed, built, and maintained CI/CD pipelines using <b>Git and Docker</b>, accelerating model training and deployment cycles.</li>
+                        <li>Designed, built, and maintained CI/CD pipelines using <b>Git and Docker</b>, accelerating model training and deployment cycles.</li>
                         <li>Automated infrastructure provisioning and configuration management with Ansible,reducing manual configuration effort by 30%.</li>
-			<li>Managed containerized ML services using <b>Docker</b> and provided support for <b>Kubernetes</b> orchestration, improving service scalability and reliability.</li>
+                        <li>Managed containerized ML services using <b>Docker</b> and provided support for <b>Kubernetes</b> orchestration, improving service scalability and reliability.</li>
                         <li>Ensured system scalability, performance, and security across 100+ Linux servers, consistently achieving 99.9% uptime.</li>
                         <li>Implemented robust monitoring and alerting solutions with Prometheus and Grafana to ensure production readiness and rapid issue response.</li>
-			<li>Collaborated with <b>DevOps</b> teams to streamline scalable workflows, reducing deployment time by 25%.</li>
-                         <li>Enhanced system security by implementing firewall rules, SELinux policies, and conducting regular system patching.</li>
+                        <li>Collaborated with <b>DevOps</b> teams to streamline scalable workflows, reducing deployment time by 25%.</li>
+                        <li>Enhanced system security by implementing firewall rules, SELinux policies, and conducting regular system patching.</li>
                     </ul>
                 </div>
             </div>
         </section>
 
         <section id="projects" class="mb-20 scroll-mt-20">
-            <h3 class="text-3xl font-bold text-center text-slate-800 mb-4">Internal Projects</h4>
+            <h3 class="text-3xl font-bold text-center text-slate-800 mb-4">Internal Projects</h3>
             <p class="text-center text-slate-600 mb-12 max-w-2xl mx-auto">I believe in proactive problem-solving through automation. These projects demonstrate my ability to identify inefficiencies and build practical, scripted solutions.</p>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col">
@@ -151,7 +164,7 @@
             </div>
         </section>
 
-        <section id="education" class="scroll-mt-20">
+        <section id="education" class="scroll-mt-20 mb-20">
             <h3 class="text-3xl font-bold text-center text-slate-800 mb-4">Education & Certifications</h3>
             <p class="text-center text-slate-600 mb-12 max-w-2xl mx-auto">My formal education in Computer Science provides a strong theoretical foundation, complemented by industry-recognized certifications that validate my practical skills.</p>
             <div class="grid md:grid-cols-2 gap-10">
@@ -172,28 +185,52 @@
                         </div>
                         <div class="bg-white p-4 rounded-xl shadow-lg">
                             <h5 class="font-bold text-slate-800">Red Hat Satellite 6 Administration</h5>
-                             <p class="text-sm text-slate-600">RH403</p>
+                            <p class="text-sm text-slate-600">RH403</p>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <section id="contact" class="scroll-mt-20">
+            <h3 class="text-3xl font-bold text-center text-slate-800 mb-4">Get In Touch</h3>
+            <p class="text-center text-slate-600 mb-12 max-w-2xl mx-auto">Feel free to reach out to me via this form for any inquiries or opportunities. I'll get back to you as soon as possible.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-lg mx-auto">
+                <form action="https://formspree.io/f/mwprkppq" method="POST" id="contact-form">
+                    <div class="mb-4">
+                        <label for="name" class="block text-slate-700 font-semibold mb-2">Name</label>
+                        <input type="text" name="name" id="name" required class="w-full px-4 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-500">
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-slate-700 font-semibold mb-2">Email</label>
+                        <input type="email" name="email" id="email" required class="w-full px-4 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-500">
+                    </div>
+                    <div class="mb-6">
+                        <label for="message" class="block text-slate-700 font-semibold mb-2">Message</label>
+                        <textarea name="message" id="message" rows="4" required class="w-full px-4 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-500"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-sky-600 text-white font-semibold py-3 rounded-lg hover:bg-sky-700 transition-colors duration-300 shadow-lg">
+                        Send Message
+                    </button>
+                    <p id="contact-form-message" class="text-center mt-4 text-sm contact-form-message"></p>
+                </form>
             </div>
         </section>
     </main>
 
     <footer class="bg-slate-800 text-slate-400 mt-20">
         <div class="container mx-auto px-6 py-4 text-center text-sm">
-            <p>&copy; 2024 Shantanu Chakraborty. Designed for modern recruitment.</p>
+            <p>&copy; 2025 Shantanu Chakraborty. Designed for modern recruitment.</p>
         </div>
     </footer>
 
     <div id="project-modal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50 hidden">
-        <div class="bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-8 relative transform transition-all scale-95 opacity-0" id="modal-content">
-             <button id="modal-close-button" class="absolute top-4 right-4 text-slate-500 hover:text-slate-800 text-3xl">&times;</button>
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-8 relative modal-content-transition scale-95 opacity-0" id="modal-content">
+            <button id="modal-close-button" class="absolute top-4 right-4 text-slate-500 hover:text-slate-800 text-3xl">&times;</button>
             <h3 id="modal-title" class="text-2xl font-bold text-slate-800 mb-4"></h3>
             <div id="modal-body" class="text-slate-600 space-y-4"></div>
         </div>
     </div>
-
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -228,7 +265,7 @@
                         y: {
                            ticks: {
                                 font: {
-                                   size: 14,
+                                    size: 14,
                                 }
                            }
                         }
@@ -264,7 +301,6 @@
             mobileMenuButton.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
             });
-
             document.querySelectorAll('#mobile-menu a').forEach(link => {
                 link.addEventListener('click', () => {
                     mobileMenu.classList.add('hidden');
@@ -306,23 +342,23 @@
                     `
                 }
             };
-            
+
             function openModal(projectKey) {
                 const data = projectData[projectKey];
                 if (!data) return;
                 modalTitle.textContent = data.title;
                 modalBody.innerHTML = data.details;
                 projectModal.classList.remove('hidden');
-                setTimeout(() => {
-                   modalContent.classList.remove('scale-95', 'opacity-0');
-                }, 50);
+                document.body.classList.add('modal-open');
+                modalContent.classList.remove('scale-95', 'opacity-0');
             }
-            
+
             function closeModal() {
-                 modalContent.classList.add('scale-95', 'opacity-0');
-                 setTimeout(() => {
+                modalContent.classList.add('scale-95', 'opacity-0');
+                document.body.classList.remove('modal-open');
+                setTimeout(() => {
                     projectModal.classList.add('hidden');
-                 }, 300);
+                }, 300);
             }
 
             document.querySelectorAll('.project-modal-trigger').forEach(button => {
@@ -340,6 +376,37 @@
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && !projectModal.classList.contains('hidden')) {
                     closeModal();
+                }
+            });
+
+            // Contact Form Script
+            const form = document.getElementById('contact-form');
+            const formMessage = document.getElementById('contact-form-message');
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const formData = new FormData(form);
+                try {
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        formMessage.textContent = 'Thank you! Your message has been sent.';
+                        formMessage.classList.remove('text-red-500');
+                        formMessage.classList.add('text-green-500', 'show');
+                        form.reset();
+                    } else {
+                        throw new Error('Form submission failed.');
+                    }
+                } catch (error) {
+                    formMessage.textContent = 'Oops! Something went wrong. Please try again later.';
+                    formMessage.classList.remove('text-green-500');
+                    formMessage.classList.add('text-red-500', 'show');
                 }
             });
         });
