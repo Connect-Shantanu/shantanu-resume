@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +20,7 @@
         .modal-content-transition.scale-95 { transform: scale(0.95); opacity: 0; }
     </style>
 </head>
+
 <body class="text-slate-700">
 
     <header id="header" class="bg-slate-800 text-white shadow-lg sticky top-0 z-50">
@@ -33,7 +35,9 @@
             </div>
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-white focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
                 </button>
             </div>
         </nav>
@@ -103,6 +107,7 @@
                         <li><b>Incident Response:</b> Deployed self-hosted n8n instances via Terraform to automate response workflows, resolving 100+ major P1 incidents.</li>
                         <li><b>Edge Security:</b> Secured enterprise traffic using Cloudflare WAF rules and rate limiting to mitigate DDoS threats.</li>
                         <li><b>Kubernetes Management:</b> Managing high-availability GKE clusters and performing zero-downtime kernel upgrades.</li>
+                        <li><b>Cost Optimization:</b> Developed automated cleanup workflows to identify and purge <b>orphaned disks</b> and unattached storage, significantly reducing monthly cloud burn.</li>
                     </ul>
                 </div>
             </div>
@@ -116,14 +121,24 @@
                     <p class="text-slate-600 mb-4 flex-grow">Built an automated lifecycle tracker using <b>Claude MCP</b> and GCS to manage security metadata via natural language.</p>
                     <button data-project="mcp" class="project-modal-trigger mt-auto bg-slate-100 text-sky-700 font-semibold py-2 px-4 rounded-lg hover:bg-slate-200 transition-all">View Details</button>
                 </div>
+                <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col border-b-4 border-sky-600">
+                    <h4 class="text-xl font-bold text-slate-800 mb-2">Event-Driven Automation (n8n)</h4>
+                    <p class="text-slate-600 mb-4 flex-grow">Deployed serverless n8n workflows on <b>GCP Cloud Run</b> to automate incident response for 100+ P1 issues.</p>
+                    <button data-project="n8n" class="project-modal-trigger mt-auto bg-slate-100 text-sky-700 font-semibold py-2 px-4 rounded-lg hover:bg-slate-200 transition-all">View Details</button>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col border-b-4 border-sky-600">
+                    <h4 class="text-xl font-bold text-slate-800 mb-2">E2E-Runner Deployment</h4>
+                    <p class="text-slate-600 mb-4 flex-grow">Deployed scalable, self-hosted E2E test runners on GCP to optimize integration testing cycles.</p>
+                    <button data-project="e2e" class="project-modal-trigger mt-auto bg-slate-100 text-sky-700 font-semibold py-2 px-4 rounded-lg hover:bg-slate-200 transition-all">View Details</button>
+                </div>
                 <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col">
                     <h4 class="text-xl font-bold text-slate-800 mb-2">Self-Hosted GHA Runners</h4>
-                    <p class="text-slate-600 mb-4 flex-grow">Implemented cost-effective, secure self-hosted GitHub Actions runners on GCP infrastructure for optimized build control.</p>
+                    <p class="text-slate-600 mb-4 flex-grow">Implemented secure self-hosted GitHub Actions runners on GCP for optimized build control and security.</p>
                     <button data-project="runners" class="project-modal-trigger mt-auto bg-slate-100 text-sky-700 font-semibold py-2 px-4 rounded-lg hover:bg-slate-200 transition-all">View Details</button>
                 </div>
                 <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col">
                     <h4 class="text-xl font-bold text-slate-800 mb-2">Zero-Trust Secret Management</h4>
-                    <p class="text-slate-600 mb-4 flex-grow">Integrated GCS with KMS/SOPS for encrypted secret management, ensuring a zero-trust architecture for application credentials.</p>
+                    <p class="text-slate-600 mb-4 flex-grow">Integrated GCS with KMS/SOPS for encrypted secret management in GitOps-friendly workflows.</p>
                     <button data-project="secrets" class="project-modal-trigger mt-auto bg-slate-100 text-sky-700 font-semibold py-2 px-4 rounded-lg hover:bg-slate-200 transition-all">View Details</button>
                 </div>
             </div>
@@ -162,21 +177,21 @@
         <section id="contact" class="scroll-mt-20">
             <h3 class="text-3xl font-bold text-center text-slate-800 mb-4">Get In Touch</h3>
             <div class="bg-white p-8 rounded-xl shadow-lg max-w-lg mx-auto">
-                <form action="https://formspree.io/f/mwprkppq" method="POST" id="contact-form">
-                    <div class="mb-4">
+                <form id="contact-form" class="space-y-4">
+                    <div>
                         <label for="name" class="block text-slate-700 font-semibold mb-2">Name</label>
                         <input type="text" name="name" id="name" required class="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-sky-500 outline-none">
                     </div>
-                    <div class="mb-4">
+                    <div>
                         <label for="email" class="block text-slate-700 font-semibold mb-2">Email</label>
                         <input type="email" name="email" id="email" required class="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-sky-500 outline-none">
                     </div>
-                    <div class="mb-6">
+                    <div>
                         <label for="message" class="block text-slate-700 font-semibold mb-2">Message</label>
                         <textarea name="message" id="message" rows="4" required class="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-sky-500 outline-none"></textarea>
                     </div>
-                    <button type="submit" class="w-full bg-sky-600 text-white font-semibold py-3 rounded-lg hover:bg-sky-700 transition-colors shadow-lg">Send Message</button>
-                    <p id="contact-form-message" class="text-center mt-4 text-sm"></p>
+                    <button type="submit" id="submit-btn" class="w-full bg-sky-600 text-white font-semibold py-3 rounded-lg hover:bg-sky-700 transition-colors shadow-lg">Send Message</button>
+                    <p id="status-message" class="text-center mt-4 text-sm font-medium hidden p-3 rounded-lg"></p>
                 </form>
             </div>
         </section>
@@ -198,6 +213,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Chart.js Setup
             const skillsChartCtx = document.getElementById('skillsChart').getContext('2d');
             new Chart(skillsChartCtx, {
                 type: 'bar',
@@ -221,33 +237,47 @@
                 }
             });
 
+            // Project Data
             const projectData = {
                 mcp: {
                     title: 'Agentic Security Workflow (Claude MCP)',
-                    details: `<p><strong>Challenge:</strong> Managing complex security metadata across GCS buckets required manual tracking and was prone to encryption errors.</p>
-                              <p><strong>Solution:</strong> Built a custom MCP server to bridge LLM capabilities with GCS. Used KMS/SOPS for zero-trust secret management.</p>
+                    details: `<p><strong>Challenge:</strong> Managing complex security metadata across GCS buckets required manual tracking.</p>
+                              <p><strong>Solution:</strong> Built a custom MCP server to bridge LLM capabilities with GCS. Used KMS/SOPS for encryption.</p>
                               <p><strong>Impact:</strong> Automated infrastructure lifecycle tracking via natural language queries.</p>`
                 },
                 runners: {
                     title: 'Self-Hosted GHA Runners',
-                    details: `<p><strong>Challenge:</strong> Managed runners lacked required security isolation and were becoming expensive at scale.</p>
-                              <p><strong>Solution:</strong> Architected a self-hosted runner pool on GCP using Terraform, providing 100% control over the build environment.</p>`
+                    details: `<p><strong>Solution:</strong> Architected a self-hosted runner pool on GCP using Terraform, providing 100% control over build security.</p>`
                 },
                 secrets: {
                     title: 'Zero-Trust Secret Management',
-                    details: `<p><strong>Solution:</strong> Implemented SOPS with GCP KMS for GitOps-friendly encrypted secrets, ensuring no plaintext credentials ever hit the repository.</p>`
+                    details: `<p><strong>Solution:</strong> Implemented SOPS with GCP KMS for encrypted secrets, ensuring zero plaintext credentials in repositories.</p>`
+                },
+                e2e: {
+                    title: 'E2E-Runner Deployment on GCP',
+                    details: `<p><strong>Challenge:</strong> Standard runners were too slow for heavy End-to-End testing.</p>
+                              <p><strong>Solution:</strong> Deployed customized e2e-runners as self-hosted GitHub Actions agents on GCP.</p>
+                              <p><strong>Impact:</strong> Isolated environments contributing to 67% reduction in build times.</p>`
+                },
+                n8n: {
+                    title: 'Incident Automation with n8n & Cloud Run',
+                    details: `<p><strong>Challenge:</strong> Manual intervention for P1 incidents was slow, affecting SLAs.</p>
+                              <p><strong>Solution:</strong> Architected event-driven automation using n8n hosted on GCP Cloud Run.</p>
+                              <p><strong>Key Achievement:</strong> Automated resolution of 100+ P1 incidents and orphaned disk cleanups.</p>`
                 }
             };
 
             // Modal Logic
             const modal = document.getElementById('project-modal');
             const content = document.getElementById('modal-content');
-            
+
             function openModal(key) {
                 const data = projectData[key];
+                if(!data) return;
                 document.getElementById('modal-title').textContent = data.title;
                 document.getElementById('modal-body').innerHTML = data.details;
                 modal.classList.remove('hidden');
+                document.body.classList.add('modal-open');
                 setTimeout(() => content.classList.remove('scale-95', 'opacity-0'), 10);
             }
 
@@ -257,8 +287,48 @@
 
             document.getElementById('modal-close-button').addEventListener('click', () => {
                 content.classList.add('scale-95', 'opacity-0');
+                document.body.classList.remove('modal-open');
                 setTimeout(() => modal.classList.add('hidden'), 300);
             });
+
+            // AJAX Form Logic
+            const form = document.getElementById('contact-form');
+            const statusMsg = document.getElementById('status-message');
+            const submitBtn = document.getElementById('submit-btn');
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const formData = new FormData(form);
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+
+                try {
+                    const response = await fetch("https://formspree.io/f/mwprkppq", {
+                        method: "POST",
+                        body: formData,
+                        headers: { 'Accept': 'application/json' }
+                    });
+
+                    if (response.ok) {
+                        statusMsg.textContent = "Message Sent! Thanks for reaching out.";
+                        statusMsg.className = "text-green-600 bg-green-100 p-3 rounded-lg mt-4 block font-medium";
+                        statusMsg.classList.remove('hidden');
+                        form.reset();
+                    } else { throw new Error(); }
+                } catch (error) {
+                    statusMsg.textContent = "Oops! Try Again.";
+                    statusMsg.className = "text-red-600 bg-red-100 p-3 rounded-lg mt-4 block font-medium";
+                    statusMsg.classList.remove('hidden');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send Message';
+                }
+            });
+
+            // Mobile Menu
+            const mobileBtn = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
         });
     </script>
 </body>
